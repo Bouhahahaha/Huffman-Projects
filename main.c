@@ -58,13 +58,13 @@ Tree create_node(){
 	return tr;
 }
 
-void change_in_lib(Library* lib, int let, int occu, char p_binary[8]) {
+/*void change_in_lib(Library* lib, int let, int occu, char p_binary[8]) {
 	Library temp = *lib;
 	temp->Letter = let;
 	temp->Occurence = occu;
 	for (int i = 0 ; i <= 7 ; i++)
 				temp->Binary[i] = p_binary[i];
-}
+}*/
 
 void add_in_Library(Library* currentLib, Library new_el) {
 
@@ -100,7 +100,7 @@ void translate_text_to_binary(Library* currentLib) {
 
 		int find_binary = letter;
 
-		for(int j=7 ; j >= 0 ; j--)//for binary print; for char j=7, for int j=31
+		for(int j=7 ; j >= 0 ; j--)
 	    {
 	    	int power = 1;
 	    	for (int i = 1 ; i <= j; i++) {
@@ -203,30 +203,19 @@ Tree huffman_tree(Library* lib) {
 	if (*lib == NULL)
 		return tr;
 
-	//printf("In Huffman function\n\n");
-
 	while (temp != NULL) {
-		//printf("Huffman Function : while\n\n");
 		if (tr == NULL){
-			//printf("Huffman Function : while : if\n\n");
-			//printf("Huffman Function : while : if : Step1\n\n");
 			tr = create_node();
 			tempTree = create_node();
-			//printf("Huffman Function : while : if : Step2\n\n");
 			tr->data = temp->Occurence;
 			tempTree->data = temp->Letter;
-			//printf("Huffman Function : while : if : Step3\n\n");
 			tempTree->parent = tr;
 			tr->right = tempTree;
 		} else {
-			//printf("Huffman Function : while : else\n\n");
 			tr = join_node(tr, temp);
 		}
-		//printf("Huffman Function : while : finish\n\n");
 		temp = temp->next;
 	}
-	//printf("Huffman Function : end while\n\n");
-
 	return tr;
 }
 
@@ -281,7 +270,7 @@ void create_dico(Tree tr, FILE *dic) {
 		tr->right->code[i+1] = '1';*/
 		create_dico(tr->right, dic);
 	} else if (tr->parent != NULL) {
-		fprintf(dic, "(%d) -> (%c) : ", tr->parent->data, tr->data);
+		fprintf(dic, "' %c ' : \n", tr->data);
 		/*int i = 0;
 		while (tr->code[i] != 0)
 		{
@@ -328,7 +317,7 @@ int main() {
 
 	translate_text_to_binary(&lib);
 
-	nb_charact_in_file(&lib);
+	//nb_charact_in_file(&lib);
 
 	min_in_library(&lib);
 
