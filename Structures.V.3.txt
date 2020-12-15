@@ -1,0 +1,18 @@
+typedef struct Stock {
+	int Letter;
+	int Occurence;
+	char Binary[8];
+	struct Stock* next;
+}Stock;
+
+typedef struct Node{
+    int data;
+	char code[20];
+    struct Node* left;
+    struct Node* right;
+	struct Node* parent;
+}Node;
+
+typedef Stock* Library;
+
+typedef Node* Tree;
