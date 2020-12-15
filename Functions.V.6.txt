@@ -21,7 +21,7 @@ Tree create_node(){
 
 	tr->left = NULL;
 	tr->right = NULL;
-	tr->parent = NULL;
+	tr->parent = NULL
 
 	return tr;
 }
